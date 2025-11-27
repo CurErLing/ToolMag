@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NAV_DATA } from './data';
-import { Category, SubCategory } from './types';
+import { SubCategory } from './types';
 import { LinkCard } from './components/LinkCard';
 import { ThemeToggle } from './components/ThemeToggle';
 import { Hero } from './components/Hero';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Github, Twitter, Heart } from 'lucide-react';
+import { Search, Github, Twitter, Heart, ChevronDown } from 'lucide-react';
 
 const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>(NAV_DATA[0].id);
   const [isDark, setIsDark] = useState<boolean>(false);
-  const [searchQuery, setSearchQuery] = useState('');
   
+  // Search Engine State
+  const [searchEngine, setSearchEngine] = useState<'baidu' | 'bing' | 'google'>('baidu');
+  const [searchInput, setSearchInput] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   // Favorites State
   const [favorites, setFavorites] = useState<Set<string>>(() => {
     try {
@@ -21,6 +26,23 @@ const App: React.FC = () => {
       return new Set();
     }
   });
+
+  const searchEngines = {
+    baidu: { name: '百度', url: 'https://www.baidu.com/s?wd=' },
+    bing: { name: '必应', url: 'https://www.bing.com/search?q=' },
+    google: { name: '谷歌', url: 'https://www.google.com/search?q=' },
+  };
+
+  // Click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Initial Theme Check
   useEffect(() => {
@@ -56,33 +78,26 @@ const App: React.FC = () => {
     setFavorites(newFavs);
   };
 
+  const handleSearch = () => {
+    if (!searchInput.trim()) return;
+    const url = searchEngines[searchEngine].url + encodeURIComponent(searchInput);
+    window.open(url, '_blank');
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   const categoriesWithFav = [
     { id: 'favorites', title: '我的收藏' },
     ...NAV_DATA
   ];
 
-  const currentCategory = categoriesWithFav.find(c => c.id === activeCategory);
-
-  // Filter Logic
+  // Filter Logic (Modified to only handle categories/favorites, removed name search)
   const filteredData = React.useMemo(() => {
     const results: SubCategory[] = [];
-
-    // Search Mode
-    if (searchQuery) {
-      NAV_DATA.forEach(cat => {
-        cat.subCategories.forEach(sub => {
-          const matchingItems = sub.items.filter(item => 
-            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()))
-          );
-          if (matchingItems.length > 0) {
-            results.push({ ...sub, items: matchingItems, title: `${cat.title} > ${sub.title}` });
-          }
-        });
-      });
-      return results;
-    }
 
     // Favorites Mode
     if (activeCategory === 'favorites') {
@@ -104,7 +119,7 @@ const App: React.FC = () => {
     // Normal Category Mode
     const standardCat = NAV_DATA.find(c => c.id === activeCategory);
     return standardCat?.subCategories || [];
-  }, [searchQuery, activeCategory, favorites]);
+  }, [activeCategory, favorites]);
 
 
   return (
@@ -123,16 +138,76 @@ const App: React.FC = () => {
               </span>
             </div>
 
-            <div className="flex-1 max-w-sm mx-4 hidden md:block">
-              <div className="relative group">
+            {/* Search Bar Section */}
+            <div className="flex-1 max-w-lg mx-4 hidden md:block">
+              <div 
+                className={`
+                  relative flex items-center w-full 
+                  bg-gray-100 dark:bg-gray-800 
+                  rounded-full border-2 
+                  ${isDropdownOpen ? 'border-black dark:border-neon-purple' : 'border-transparent'} 
+                  focus-within:border-black dark:focus-within:border-neon-purple 
+                  transition-all duration-300
+                `}
+              >
+                {/* Engine Selector */}
+                <div className="relative" ref={dropdownRef}>
+                  <button 
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="flex items-center gap-2 pl-5 pr-3 py-1.5 h-full text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white transition-colors border-r border-gray-300 dark:border-gray-600 outline-none whitespace-nowrap"
+                  >
+                    {searchEngines[searchEngine].name}
+                    <ChevronDown size={14} className={`transform transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.1 }}
+                        className="absolute top-full left-0 mt-2 w-28 py-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
+                      >
+                        {(Object.keys(searchEngines) as Array<keyof typeof searchEngines>).map((key) => (
+                          <button
+                            key={key}
+                            onClick={() => {
+                              setSearchEngine(key);
+                              setIsDropdownOpen(false);
+                            }}
+                            className={`w-full text-left px-5 py-2.5 text-sm transition-colors ${
+                              searchEngine === key 
+                                ? 'bg-gray-100 dark:bg-gray-700 text-black dark:text-white font-medium' 
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                            }`}
+                          >
+                            {searchEngines[key].name}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Input Field */}
                 <input 
                   type="text" 
-                  placeholder="搜索工具..." 
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-gray-100 dark:bg-gray-800 border-2 border-transparent focus:border-black dark:focus:border-neon-purple rounded-full py-1.5 pl-9 pr-4 text-sm outline-none transition-all duration-300 text-gray-800 dark:text-gray-200"
+                  placeholder={`在 ${searchEngines[searchEngine].name} 上搜索...`}
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className="w-full bg-transparent border-none py-1.5 pl-3 pr-10 text-sm outline-none text-gray-800 dark:text-gray-200 placeholder-gray-400"
                 />
-                <Search className="absolute left-3 top-2 text-gray-400 group-focus-within:text-neon-purple transition-colors" size={16} />
+                
+                {/* Search Icon/Button */}
+                <button 
+                  onClick={handleSearch}
+                  className="absolute right-2 p-1.5 text-gray-400 hover:text-neon-purple transition-colors rounded-full hover:bg-gray-200 dark:hover:bg-gray-700/50"
+                >
+                  <Search size={16} />
+                </button>
               </div>
             </div>
 
@@ -151,62 +226,54 @@ const App: React.FC = () => {
       {/* Main Content Area */}
       <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        {/* Sticky Category Tabs (Only show if not searching) */}
-        {!searchQuery && (
-          <div className="sticky top-16 z-40 -mx-4 sm:-mx-6 lg:-mx-8 mb-8 bg-gray-50/90 dark:bg-deep-dark/90 backdrop-blur-md border-b-2 border-gray-200 dark:border-gray-800 transition-all duration-300 shadow-sm">
-             <div 
-               className="flex overflow-x-auto py-3 px-4 sm:px-6 lg:px-8 gap-3 items-center justify-start lg:justify-center"
-               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-             >
-               {/* Hide scrollbar for Chrome/Safari/Opera */}
-               <style>{`
-                 .no-scrollbar::-webkit-scrollbar {
-                   display: none;
-                 }
-               `}</style>
-              {categoriesWithFav.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => {
-                    setActiveCategory(category.id);
-                    // Scroll to top of content if scrolled far down
-                    const heroHeight = window.innerHeight * 0.5;
-                    if (window.scrollY > heroHeight) {
-                      window.scrollTo({ top: heroHeight - 64, behavior: 'smooth' });
-                    }
-                  }}
-                  className={`
-                    relative px-5 py-2 rounded-full font-bold font-display text-sm whitespace-nowrap transition-all duration-300 flex-shrink-0 no-scrollbar flex items-center gap-2
-                    ${activeCategory === category.id 
-                      ? 'bg-black dark:bg-white text-white dark:text-black shadow-[3px_3px_0px_0px_#a855f7] transform -translate-y-0.5' 
-                      : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-2 border-gray-200 dark:border-gray-700 hover:border-black dark:hover:border-gray-500 hover:-translate-y-0.5'}
-                  `}
-                >
-                  {category.id === 'favorites' && <Heart size={14} className={activeCategory === 'favorites' ? 'fill-white dark:fill-black' : 'fill-none'} />}
-                  {category.title}
-                  {activeCategory === category.id && (
-                    <motion.div
-                      layoutId="activeTabIndicator"
-                      className="absolute inset-0 border-2 border-transparent rounded-full"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
+        {/* Sticky Category Tabs */}
+        <div className="sticky top-16 z-40 -mx-4 sm:-mx-6 lg:-mx-8 mb-8 bg-gray-50/90 dark:bg-deep-dark/90 backdrop-blur-md border-b-2 border-gray-200 dark:border-gray-800 transition-all duration-300 shadow-sm">
+            <div 
+              className="flex overflow-x-auto py-3 px-4 sm:px-6 lg:px-8 gap-3 items-center justify-start lg:justify-center"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {/* Hide scrollbar for Chrome/Safari/Opera */}
+              <style>{`
+                .no-scrollbar::-webkit-scrollbar {
+                  display: none;
+                }
+              `}</style>
+            {categoriesWithFav.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => {
+                  setActiveCategory(category.id);
+                  // Scroll to top of content if scrolled far down
+                  const heroHeight = window.innerHeight * 0.5;
+                  if (window.scrollY > heroHeight) {
+                    window.scrollTo({ top: heroHeight - 64, behavior: 'smooth' });
+                  }
+                }}
+                className={`
+                  relative px-5 py-2 rounded-full font-bold font-display text-sm whitespace-nowrap transition-all duration-300 flex-shrink-0 no-scrollbar flex items-center gap-2
+                  ${activeCategory === category.id 
+                    ? 'bg-black dark:bg-white text-white dark:text-black shadow-[3px_3px_0px_0px_#a855f7] transform -translate-y-0.5' 
+                    : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-2 border-gray-200 dark:border-gray-700 hover:border-black dark:hover:border-gray-500 hover:-translate-y-0.5'}
+                `}
+              >
+                {category.id === 'favorites' && <Heart size={14} className={activeCategory === 'favorites' ? 'fill-white dark:fill-black' : 'fill-none'} />}
+                {category.title}
+                {activeCategory === category.id && (
+                  <motion.div
+                    layoutId="activeTabIndicator"
+                    className="absolute inset-0 border-2 border-transparent rounded-full"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+              </button>
+            ))}
           </div>
-        )}
-
-        {searchQuery && (
-           <div className="mb-6 text-center">
-             <h2 className="text-xl font-bold dark:text-white">"{searchQuery}" 的搜索结果</h2>
-           </div>
-        )}
+        </div>
 
         {/* Content Grid */}
         <AnimatePresence mode='wait'>
           <motion.div
-            key={activeCategory + (searchQuery ? 'search' : '')}
+            key={activeCategory}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
@@ -238,14 +305,14 @@ const App: React.FC = () => {
             
             {filteredData.length === 0 && (
               <div className="text-center py-20">
-                {activeCategory === 'favorites' && !searchQuery ? (
+                {activeCategory === 'favorites' ? (
                    <div className="flex flex-col items-center gap-4">
                      <Heart size={48} className="text-gray-300 dark:text-gray-600" />
                      <p className="text-xl text-gray-500">还没有收藏任何工具</p>
                      <p className="text-sm text-gray-400">点击卡片右上角的爱心即可添加收藏</p>
                    </div>
                 ) : (
-                  <p className="text-xl text-gray-500">未找到结果。请尝试不同的关键词。</p>
+                  <p className="text-xl text-gray-500">暂无内容</p>
                 )}
               </div>
             )}
@@ -257,7 +324,7 @@ const App: React.FC = () => {
       <footer className="border-t-2 border-black dark:border-gray-700 bg-white dark:bg-deep-dark py-8 mt-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400 font-display">
-            由 凌同学工具库 用心 <span className="text-neon-pink">♥</span> 设计。
+            由 凌同学 用心 <span className="text-neon-pink">♥</span> 设计。
           </p>
           <div className="flex justify-center gap-4 mt-3">
              <Twitter className="w-5 h-5 text-gray-400 hover:text-neon-cyan cursor-pointer transition-colors" />
