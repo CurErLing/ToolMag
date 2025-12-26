@@ -84,12 +84,16 @@ export const NAV_DATA: Category[] = [
     subCategories: [
       {
         id: 'social-websites',
-        title: '社交网站',
+        title: '常用网站',
         items: [
           { id: 'xiaohongshu', name: '小红书', description: '生活方式分享平台', url: 'https://www.xiaohongshu.com/', iconName: 'Book', tags: ['Social'], color: 'bg-pink-500' },
           { id: 'xiaohehei', name: '小黑盒', description: '游戏社区平台', url: 'https://www.xiaoheihe.cn/', iconName: 'Gamepad2', tags: ['Game'], color: 'bg-blue-500' },
           { id: 'bilibili', name: 'B站', description: '弹幕视频网站', url: 'https://www.bilibili.com/', iconName: 'Video', tags: ['Video'], color: 'bg-pink-600' },
-          { id: 'zhihu', name: '知乎', description: '问答社区平台', url: 'https://www.zhihu.com/', iconName: 'MessageSquare', tags: ['Q&A'], color: 'bg-blue-600' }
+          { id: 'zhihu', name: '知乎', description: '问答社区平台', url: 'https://www.zhihu.com/', iconName: 'MessageSquare', tags: ['Q&A'], color: 'bg-blue-600' },
+          { id: 'qq', name: 'QQ', description: '腾讯即时通讯软件', url: 'https://im.qq.com/', iconName: 'MessageSquare', tags: ['Social'], color: 'bg-blue-500' },
+          { id: 'wechat', name: '微信官网', description: '微信官方网站', url: 'https://weixin.qq.com/', iconName: 'MessageSquare', tags: ['Social'], color: 'bg-green-500' },
+          { id: 'steam', name: 'Steam', description: '游戏分发平台', url: 'https://store.steampowered.com/', iconName: 'Gamepad2', tags: ['Game'], color: 'bg-blue-500' },
+          { id: 'epic', name: 'Epic Games', description: 'Epic游戏商城', url: 'https://www.epicgames.com/store/zh-CN/', iconName: 'Gamepad2', tags: ['Game'], color: 'bg-black' }
         ]
       }
     ]
