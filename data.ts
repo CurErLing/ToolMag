@@ -100,9 +100,8 @@ export const NAV_DATA: Category[] = [
           { id: 'wechat', name: '微信官网', description: '微信官方网站', url: 'https://weixin.qq.com/', iconName: 'MessageSquare', tags: ['Social'], color: 'bg-green-500' },
           { id: 'steam', name: 'Steam', description: '游戏分发平台', url: 'https://store.steampowered.com/', iconName: 'Gamepad2', tags: ['Game'], color: 'bg-blue-500' },
           { id: 'epic', name: 'Epic Games', description: 'Epic游戏商城', url: 'https://www.epicgames.com/store/zh-CN/', iconName: 'Gamepad2', tags: ['Game'], color: 'bg-black' },
-
           { id: 'uu-accelerator', name: '网易UU加速器', description: '游戏加速工具', url: 'https://uu.163.com/', iconName: 'Zap', tags: ['Game'], color: 'bg-pink-500' },
-          { id: 'uu-remote', name: '网易UU远程', description: '远程控制工具', url: 'https://uu.163.com/remote/', iconName: 'Monitor', tags: ['Remote'], color: 'bg-blue-500' },
+          { id: 'uu-remote', name: '网易UU远程', description: '远程控制工具', url: 'https://uuyc.163.com/', iconName: 'Monitor', tags: ['Remote'], color: 'bg-blue-500' },
           { id: '7zip', name: '7-Zip', description: '压缩解压工具', url: 'https://www.7-zip.org/', iconName: 'FileZip', tags: ['Tool'], color: 'bg-green-600' },
           { id: 'huorong', name: '火绒安全', description: '电脑安全软件', url: 'https://www.huorong.cn/', iconName: 'Shield', tags: ['Security'], color: 'bg-blue-600' },
           { id: 'google-chrome', name: 'Google浏览器', description: '谷歌浏览器', url: 'https://www.google.com/chrome/', iconName: 'Globe', tags: ['Browser'], color: 'bg-blue-500' },
