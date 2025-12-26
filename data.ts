@@ -8,10 +8,11 @@ export const NAV_DATA: Category[] = [
     subCategories: [
       {
         id: 'smart-chat',
-        title: '智能对话',
+        title: 'AI 助手',
         items: [
           { id: 'chatgpt', name: 'ChatGPT', description: 'OpenAI 旗舰对话模型', url: 'https://chatgpt.com/', iconName: 'Brain', tags: ['OpenAI'], color: 'bg-green-600' },
           { id: 'gemini', name: 'Gemini', description: 'Google 最强多模态', url: 'https://gemini.google.com/app', iconName: 'Sparkles', tags: ['Google'], color: 'bg-blue-600' },
+          { id: 'google-ai-studio', name: 'Google AI Studio', description: 'Google AI 开发平台', url: 'https://aistudio.google.com/', iconName: 'Brain', tags: ['Google'], color: 'bg-blue-500' },
           { id: 'deepseek', name: 'DeepSeek', description: '深度求索代码与逻辑', url: 'https://chat.deepseek.com', iconName: 'Code', tags: ['Logic'], color: 'bg-blue-800' },
           { id: 'claude', name: 'Claude', description: '拟人化最高的 AI', url: 'https://claude.ai/', iconName: 'Brain', tags: ['Safe'], color: 'bg-orange-600' },
           { id: 'doubao', name: '豆包', description: '字节跳动智能助手', url: 'https://www.doubao.com/chat/?channel=cnblogs', iconName: 'Bot', tags: ['Byte'], color: 'bg-green-500' },
@@ -24,6 +25,7 @@ export const NAV_DATA: Category[] = [
           { id: 'wenxin', name: '文心一言', description: '百度知识增强大模型', url: 'https://chat.baidu.com/app', iconName: 'Brain', tags: ['Baidu'], color: 'bg-blue-500' },
           { id: 'metaso', name: '秘塔 AI', description: '无广告 AI 搜索', url: 'https://metaso.cn/', iconName: 'Search', tags: ['Search'], color: 'bg-emerald-600' },
           { id: 'monica', name: 'Monica', description: '全能 AI 助手插件', url: 'https://monica.im/', iconName: 'Bot', tags: ['Plugin'], color: 'bg-purple-500' },
+          { id: 'zai', name: 'Z.ai', description: 'AI 智能助手', url: 'https://z.ai/', iconName: 'Brain', tags: ['AI'], color: 'bg-blue-600' },
         ]
       },
       {
@@ -72,6 +74,22 @@ export const NAV_DATA: Category[] = [
           { id: 'olocr', name: 'OLOCR', description: '在线 OCR', url: 'https://olocr.com', iconName: 'FileText', tags: ['OCR'], color: 'bg-blue-600' },
           { id: 'huggingface', name: 'TTS', description: '文字转语音', url: 'https://huggingface.co/spaces/zomehwh/vits-models-genshin-bh3', iconName: 'Mic', tags: ['TTS'], color: 'bg-yellow-600' },
           { id: 'midomi', name: '听歌识曲', description: '旋律搜歌', url: 'https://www.midomi.com', iconName: 'Mic', tags: ['Search'], color: 'bg-orange-500' },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'common-websites',
+    title: '常用网站',
+    subCategories: [
+      {
+        id: 'social-websites',
+        title: '社交网站',
+        items: [
+          { id: 'xiaohongshu', name: '小红书', description: '生活方式分享平台', url: 'https://www.xiaohongshu.com/', iconName: 'Book', tags: ['Social'], color: 'bg-pink-500' },
+          { id: 'xiaohehei', name: '小黑盒', description: '游戏社区平台', url: 'https://www.xiaoheihe.cn/', iconName: 'Gamepad2', tags: ['Game'], color: 'bg-blue-500' },
+          { id: 'bilibili', name: 'B站', description: '弹幕视频网站', url: 'https://www.bilibili.com/', iconName: 'Video', tags: ['Video'], color: 'bg-pink-600' },
+          { id: 'zhihu', name: '知乎', description: '问答社区平台', url: 'https://www.zhihu.com/', iconName: 'MessageSquare', tags: ['Q&A'], color: 'bg-blue-600' }
         ]
       }
     ]
@@ -253,6 +271,10 @@ export const NAV_DATA: Category[] = [
           { id: 'carbon', name: 'Carbon', description: '代码转图片', url: 'https://carbon.now.sh/', iconName: 'Image', tags: ['Code'], color: 'bg-gray-800' },
           { id: 'regexr', name: 'RegExr', description: '正则测试', url: 'https://regexr.com/', iconName: 'Code', tags: ['RegEx'], color: 'bg-blue-400' },
           { id: 'jsoncrack', name: 'JSON Crack', description: 'JSON 可视化', url: 'https://jsoncrack.com/', iconName: 'Code2', tags: ['JSON'], color: 'bg-green-600' },
+          { id: 'sourcetree', name: 'SourceTree', description: 'Git 客户端工具', url: 'https://www.sourcetreeapp.com/', iconName: 'GitBranch', tags: ['Git'], color: 'bg-blue-500' },
+          { id: 'trae', name: 'Trae', description: 'AI 代码助手', url: 'https://www.trae.ai/', iconName: 'Brain', tags: ['AI'], color: 'bg-purple-600' },
+          { id: 'cursor', name: 'Cursor', description: 'AI 代码编辑器', url: 'https://cursor.sh/', iconName: 'Terminal', tags: ['Editor'], color: 'bg-black' },
+          { id: 'vercel', name: 'Vercel', description: '一键部署平台', url: 'https://vercel.com/', iconName: 'Globe', tags: ['Deploy', 'Cloud'], color: 'bg-black' },
         ]
       },
       {
