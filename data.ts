@@ -58,6 +58,14 @@ export const NAV_DATA: Category[] = [
           { id: 'pika', name: 'Pika', description: '创意视频生成', url: 'https://pika.art/', iconName: 'Video', tags: ['Fun'], color: 'bg-red-500' },
         ]
       },
+            {
+        id: '3d-model',
+        title: '三维建模',
+        items: [
+          { id: 'hunyuan3d', name: '混元 3D', description: '腾讯 3D 生成', url: 'https://3d.hunyuan.tencent.com/login', iconName: 'Box', tags: ['3D'], color: 'bg-blue-500' },
+          { id: 'tripo', name: 'Tripo 3D', description: '图文转 3D 模型', url: 'https://www.tripo3d.ai/', iconName: 'Box', tags: ['3D'], color: 'bg-purple-600' },
+        ]
+      },
       {
         id: 'audio-gen',
         title: '音频创作',
@@ -124,7 +132,28 @@ export const NAV_DATA: Category[] = [
           { id: 'autodraw', name: 'Autodraw', description: '谷歌智能画板', url: 'https://www.autodraw.com/', iconName: 'PenTool', tags: ['Draw'], color: 'bg-yellow-400' },
         ]
       },
+
       {
+        id: 'image-edit',
+        title: '图片处理',
+        items: [
+          { id: 'zaixianps', name: '在线 PS', description: '网页版 Photoshop', url: 'https://zaixianps.net', iconName: 'Image', tags: ['PS'], color: 'bg-blue-800' },
+          { id: 'tutieshi', name: '图贴士', description: 'GIF 压缩与编辑', url: 'https://tutieshi.com', iconName: 'FileVideo', tags: ['GIF'], color: 'bg-pink-500' },
+          { id: 'removephotos_edit', name: '图片编辑', description: '在线修图', url: 'https://remove.photos/zh-cn/', iconName: 'Image', tags: ['Edit'], color: 'bg-blue-400' },
+         { id: 'removebg', name: 'Remove.bg', description: '自动去除背景', url: 'https://www.remove.bg/zh', iconName: 'Layers', tags: ['Cut'], color: 'bg-gray-600' },
+          { id: 'magiceraser', name: '魔术橡皮', description: '移除图片杂物', url: 'https://magicstudio.com/zh/magiceraser', iconName: 'Scissors', tags: ['Clean'], color: 'bg-purple-500' },
+          { id: 'removephotos', name: 'Remove.photos', description: '消除物体', url: 'https://remove.photos/zh-cn/', iconName: 'Image', tags: ['Clean'], color: 'bg-blue-400' },
+          { id: 'bgsub', name: 'BgSub', description: '智能换背景', url: 'https://bgsub.cn', iconName: 'Image', tags: ['BG'], color: 'bg-yellow-500' },
+          { id: 'pixian', name: 'Pixian', description: '高质量免费抠图', url: 'https://pixian.ai/', iconName: 'Layers', tags: ['Cut'], color: 'bg-indigo-500' },
+       { id: 'bigjpg', name: 'BigJPG', description: 'AI 图片无损放大', url: 'https://bigjpg.com/', iconName: 'ZoomIn', tags: ['Scale'], color: 'bg-blue-600' },
+          { id: 'upscayl', name: 'Upscayl', description: '开源图片放大', url: 'https://upscayl.org/', iconName: 'Monitor', tags: ['Open'], color: 'bg-gray-800' },
+          { id: 'tinypng', name: 'TinyPNG', description: '智能图片压缩', url: 'https://tinypng.com/', iconName: 'Box', tags: ['Tiny'], color: 'bg-green-600' },
+
+        
+        ]
+      },
+
+            {
         id: 'design-inspire',
         title: '灵感素材',
         items: [
@@ -132,24 +161,16 @@ export const NAV_DATA: Category[] = [
           { id: 'behance', name: 'Behance', description: 'Adobe 创意作品', url: 'https://www.behance.net/', iconName: 'Image', tags: ['Art'], color: 'bg-blue-700' },
           { id: 'pinterest', name: 'Pinterest', description: '瀑布流灵感', url: 'https://www.pinterest.com/', iconName: 'Image', tags: ['Idea'], color: 'bg-red-600' },
           { id: 'huaban', name: '花瓣网', description: '设计师灵感', url: 'https://huaban.com/', iconName: 'Image', tags: ['CN'], color: 'bg-red-500' },
-        ]
-      },
-      {
-        id: 'image-edit',
-        title: '图片编辑',
-        items: [
-          { id: 'zaixianps', name: '在线 PS', description: '网页版 Photoshop', url: 'https://zaixianps.net', iconName: 'Image', tags: ['PS'], color: 'bg-blue-800' },
-          { id: 'tutieshi', name: '图贴士', description: 'GIF 压缩与编辑', url: 'https://tutieshi.com', iconName: 'FileVideo', tags: ['GIF'], color: 'bg-pink-500' },
-          { id: 'removephotos_edit', name: '图片编辑', description: '在线修图', url: 'https://remove.photos/zh-cn/', iconName: 'Image', tags: ['Edit'], color: 'bg-blue-400' },
-        ]
-      },
-      {
-        id: 'color-tools',
-        title: '配色工具',
-        items: [
-          { id: 'coolors', name: 'Coolors', description: '快捷配色生成', url: 'https://coolors.co/', iconName: 'Palette', tags: ['Gen'], color: 'bg-blue-500' },
+         { id: 'coolors', name: 'Coolors', description: '快捷配色生成', url: 'https://coolors.co/', iconName: 'Palette', tags: ['Gen'], color: 'bg-blue-500' },
           { id: 'adobecolor', name: 'Adobe Color', description: 'Adobe 配色轮', url: 'https://color.adobe.com/zh/create/color-wheel', iconName: 'Palette', tags: ['Pro'], color: 'bg-gray-800' },
           { id: 'nippon', name: 'Nippon Colors', description: '日本传统色', url: 'https://nipponcolors.com/', iconName: 'Palette', tags: ['Art'], color: 'bg-red-400' },
+  
+                  { id: 'maoken', name: '猫啃网', description: '字体聚合站', url: 'https://www.maoken.com', iconName: 'Type', tags: ['Font'], color: 'bg-yellow-600' },
+          { id: '100font', name: '100font', description: '免费商用字体', url: 'https://www.100font.com', iconName: 'Type', tags: ['Free'], color: 'bg-black' },
+          { id: 'iconfont', name: 'Iconfont', description: '阿里矢量图标库', url: 'https://www.iconfont.cn/', iconName: 'Smile', tags: ['Icon'], color: 'bg-purple-600' },
+          { id: 'flaticon', name: 'Flaticon', description: '免费矢量图标', url: 'https://www.flaticon.com/', iconName: 'Smile', tags: ['Icon'], color: 'bg-green-500' },
+
+        
         ]
       },
       {
@@ -161,16 +182,7 @@ export const NAV_DATA: Category[] = [
           { id: 'anymind', name: 'AnyMind', description: '脑图工具', url: 'https://www.amymind.com', iconName: 'Map', tags: ['Mind'], color: 'bg-purple-500' },
         ]
       },
-      {
-        id: 'fonts',
-        title: '字体素材',
-        items: [
-          { id: 'maoken', name: '猫啃网', description: '字体聚合站', url: 'https://www.maoken.com', iconName: 'Type', tags: ['Font'], color: 'bg-yellow-600' },
-          { id: '100font', name: '100font', description: '免费商用字体', url: 'https://www.100font.com', iconName: 'Type', tags: ['Free'], color: 'bg-black' },
-          { id: 'iconfont', name: 'Iconfont', description: '阿里矢量图标库', url: 'https://www.iconfont.cn/', iconName: 'Smile', tags: ['Icon'], color: 'bg-purple-600' },
-          { id: 'flaticon', name: 'Flaticon', description: '免费矢量图标', url: 'https://www.flaticon.com/', iconName: 'Smile', tags: ['Icon'], color: 'bg-green-500' },
-        ]
-      },
+
       {
         id: 'copy-layout',
         title: '文案排版',
@@ -180,50 +192,20 @@ export const NAV_DATA: Category[] = [
           { id: 'hemingway', name: 'Hemingway', description: '英文写作优化', url: 'https://www.hemingwayapp.com', iconName: 'PenTool', tags: ['Edit'], color: 'bg-gray-800' },
         ]
       },
-      {
-        id: 'bg-removal',
-        title: '背景抠除',
-        items: [
-          { id: 'removebg', name: 'Remove.bg', description: '自动去除背景', url: 'https://www.remove.bg/zh', iconName: 'Layers', tags: ['Cut'], color: 'bg-gray-600' },
-          { id: 'magiceraser', name: '魔术橡皮', description: '移除图片杂物', url: 'https://magicstudio.com/zh/magiceraser', iconName: 'Scissors', tags: ['Clean'], color: 'bg-purple-500' },
-          { id: 'removephotos', name: 'Remove.photos', description: '消除物体', url: 'https://remove.photos/zh-cn/', iconName: 'Image', tags: ['Clean'], color: 'bg-blue-400' },
-          { id: 'bgsub', name: 'BgSub', description: '智能换背景', url: 'https://bgsub.cn', iconName: 'Image', tags: ['BG'], color: 'bg-yellow-500' },
-          { id: 'pixian', name: 'Pixian', description: '高质量免费抠图', url: 'https://pixian.ai/', iconName: 'Layers', tags: ['Cut'], color: 'bg-indigo-500' },
-        ]
-      },
-      {
-        id: 'enhance',
-        title: '清晰增强',
-        items: [
-          { id: 'bigjpg', name: 'BigJPG', description: 'AI 图片无损放大', url: 'https://bigjpg.com/', iconName: 'ZoomIn', tags: ['Scale'], color: 'bg-blue-600' },
-          { id: 'upscayl', name: 'Upscayl', description: '开源图片放大', url: 'https://upscayl.org/', iconName: 'Monitor', tags: ['Open'], color: 'bg-gray-800' },
-          { id: 'tinypng', name: 'TinyPNG', description: '智能图片压缩', url: 'https://tinypng.com/', iconName: 'Box', tags: ['Tiny'], color: 'bg-green-600' },
-        ]
-      },
-      {
-        id: '3d-model',
-        title: '三维建模',
-        items: [
-          { id: 'hunyuan3d', name: '混元 3D', description: '腾讯 3D 生成', url: 'https://3d.hunyuan.tencent.com/login', iconName: 'Box', tags: ['3D'], color: 'bg-blue-500' },
-          { id: 'tripo', name: 'Tripo 3D', description: '图文转 3D 模型', url: 'https://www.tripo3d.ai/', iconName: 'Box', tags: ['3D'], color: 'bg-purple-600' },
-        ]
-      },
+
       {
         id: 'video-repair',
-        title: '视频修复',
+        title: '视频处理',
         items: [
           { id: 'bigmp4', name: 'BigMP4', description: '视频补帧放大', url: 'https://bigmp4.com', iconName: 'Video', tags: ['AI'], color: 'bg-red-500' },
-        ]
-      },
-      {
-        id: 'video-parse',
-        title: '视频解析',
-        items: [
           { id: 'datatool', name: '视频下载器', description: '全网视频解析', url: 'https://www.datatool.vip/', iconName: 'Download', tags: ['Tool'], color: 'bg-blue-600' },
           { id: 'weibovideo', name: 'B 站下载器', description: 'B 站视频提取', url: 'https://weibo.iiilab.com/', iconName: 'Download', tags: ['Bili'], color: 'bg-pink-400' },
           { id: 'vipvideo', name: 'VIP 解析', description: '全网 VIP 视频', url: 'https://tool.liumingye.cn/video/', iconName: 'Video', tags: ['VIP'], color: 'bg-yellow-500' },
+ 
+       
         ]
-      }
+      },
+
     ]
   },
   {
@@ -238,6 +220,10 @@ export const NAV_DATA: Category[] = [
           { id: 'urlvoid', name: '安全检测', description: '网站安全扫描', url: 'https://www.urlvoid.com', iconName: 'Shield', tags: ['Sec'], color: 'bg-green-600' },
           { id: 'netspeed', name: '网速测试', description: '宽带速度检测', url: 'https://tool.jy6d.com/netspeed', iconName: 'Activity', tags: ['Speed'], color: 'bg-blue-500' },
           { id: 'qifi', name: 'WiFi 二维码', description: 'WiFi 码生成', url: 'https://qifi.org/', iconName: 'Wifi', tags: ['Net'], color: 'bg-blue-400' },
+             { id: 'lanzou', name: '蓝奏云', description: '小文件存储', url: 'https://www.lanzoui.com/', iconName: 'Cloud', tags: ['Cloud'], color: 'bg-blue-400' },
+          { id: 'wenshushu', name: '文叔叔', description: '不限速传输', url: 'https://www.wenshushu.cn', iconName: 'Send', tags: ['File'], color: 'bg-indigo-500' },
+ 
+       
         ]
       },
       {
@@ -249,14 +235,6 @@ export const NAV_DATA: Category[] = [
           { id: 'cdkm', name: 'CDKM', description: '文件转换', url: 'https://cdkm.com/cn/?src=www.jspoo.com', iconName: 'FileText', tags: ['Conv'], color: 'bg-blue-400' },
           { id: 'tableconvert', name: '表格转换器', description: '格式互转', url: 'https://tableconvert.com/zh-cn/', iconName: 'FileText', tags: ['Excel'], color: 'bg-green-600' },
           { id: 'squoosh', name: 'Squoosh', description: '谷歌图片压缩', url: 'https://squoosh.app/', iconName: 'Image', tags: ['Opt'], color: 'bg-pink-500' },
-        ]
-      },
-      {
-        id: 'cloud-store',
-        title: '云端存储',
-        items: [
-          { id: 'lanzou', name: '蓝奏云', description: '小文件存储', url: 'https://www.lanzoui.com/', iconName: 'Cloud', tags: ['Cloud'], color: 'bg-blue-400' },
-          { id: 'wenshushu', name: '文叔叔', description: '不限速传输', url: 'https://www.wenshushu.cn', iconName: 'Send', tags: ['File'], color: 'bg-indigo-500' },
         ]
       },
       {
